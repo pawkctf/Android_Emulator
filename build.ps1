@@ -30,14 +30,14 @@ function check_install {
 # Builds the Android Emulator
 function build_emulator {
     Set-Location "$UserDirectory\AppData\Local\Android\Sdk\cmdline-tools\latest\bin\"
-    .\avdmanager.bat create avd --force --name NH_Android_Template --abi google_apis/x86 --package 'system-images;android-28;google_apis;x86' --device 'Nexus 6P'
+    .\avdmanager.bat create avd --force --name Android_Template --abi google_apis/x86 --package 'system-images;android-28;google_apis;x86' --device 'Nexus 6P'
 }
 
 # Runs the Emulator on a different PID
 function run_emulator {
     Start-Job -ScriptBlock {
         Set-Location "$($args[0])\AppData\Local\Android\Sdk\emulator"
-        .\emulator.exe -avd NH_Android_Template -writable-system | Out-Null
+        .\emulator.exe -avd Android_Template -writable-system | Out-Null
     } -ArgumentList $UserDirectory
 }
 
